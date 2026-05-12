@@ -11,6 +11,6 @@ $routes->get('/cafe', 'Home::cafe');
 $routes->get('/wisata', 'Home::wisata');
 $routes->get('/hidden-gems', 'Home::hidden_gems');
 $routes->get('/hidden-gems/(:any)', 'Home::hidden_gems/$1');
-
+#awkwkwwkwkwkwkwkwkwkwkwkwkw
 
 
