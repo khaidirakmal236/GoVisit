@@ -26,3 +26,4 @@ class FotoModel extends Model
         return $this->where('id_tempat', $idTempat)->findAll();
     }
 }
+#khai suka salto
