@@ -1,0 +1,198 @@
+ERROR - 2026-05-18 11:02:16 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp8\htdocs\govisit\system\Database\BaseBuilder.php(1678): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', NULL, false)
+#4 C:\xampp8\htdocs\govisit\system\Model.php(759): CodeIgniter\Database\BaseBuilder->countAll()
+#5 C:\xampp8\htdocs\govisit\app\Controllers\Govisit.php(28): CodeIgniter\Model->__call('countAll', Array)
+#6 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(951): App\Controllers\GoVisit->beranda()
+#7 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+#8 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp8\htdocs\govisit\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp8\htdocs\govisit\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp8\htdocs\govisit\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp8\htdocs\govisit\system\Database\BaseBuilder.php(1678): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', NULL, false)
+#3 C:\xampp8\htdocs\govisit\system\Model.php(759): CodeIgniter\Database\BaseBuilder->countAll()
+#4 C:\xampp8\htdocs\govisit\app\Controllers\Govisit.php(28): CodeIgniter\Model->__call('countAll', Array)
+#5 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(951): App\Controllers\GoVisit->beranda()
+#6 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+#7 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp8\htdocs\govisit\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp8\htdocs\govisit\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp8\htdocs\govisit\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-05-18 11:02:16 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1678): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows` FROM `tempat`', null, false)
+ 3 SYSTEMPATH\Model.php(759): CodeIgniter\Database\BaseBuilder->countAll()
+ 4 APPPATH\Controllers\Govisit.php(28): CodeIgniter\Model->__call('countAll', [])
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\GoVisit->beranda()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-18 11:03:27 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "govisit/login.php"
+[Method: GET, Route: login]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('govisit/login.php')
+ 2 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('govisit/login', [], true)
+ 3 APPPATH\Controllers\Govisit.php(114): view('govisit/login', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\GoVisit->login()
+ 5 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+ 6 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-05-18 11:03:59 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp8\htdocs\govisit\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `tempat`...', Array, false)
+#4 C:\xampp8\htdocs\govisit\system\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp8\htdocs\govisit\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp8\htdocs\govisit\app\Models\TempatModel.php(23): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp8\htdocs\govisit\app\Controllers\Govisit.php(58): App\Models\TempatModel->getAllWithKategori()
+#8 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(951): App\Controllers\GoVisit->eksplorasi()
+#9 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+#10 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp8\htdocs\govisit\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp8\htdocs\govisit\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp8\htdocs\govisit\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp8\htdocs\govisit\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `tempat`...', Array, false)
+#3 C:\xampp8\htdocs\govisit\system\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp8\htdocs\govisit\system\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+#5 C:\xampp8\htdocs\govisit\app\Models\TempatModel.php(23): CodeIgniter\BaseModel->findAll()
+#6 C:\xampp8\htdocs\govisit\app\Controllers\Govisit.php(58): App\Models\TempatModel->getAllWithKategori()
+#7 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(951): App\Controllers\GoVisit->eksplorasi()
+#8 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+#9 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp8\htdocs\govisit\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp8\htdocs\govisit\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\xampp8\htdocs\govisit\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+CRITICAL - 2026-05-18 11:03:59 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: eksplorasi]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `tempat`.*, `tempat`.`skor` AS `rating`, `kategori`.`nama` AS `kategori`
+FROM `tempat`
+JOIN `kategori` ON `kategori`.`id` = `tempat`.`kategori_id`
+ORDER BY `tempat`.`id` ASC', [], false)
+ 3 SYSTEMPATH\Model.php(253): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(676): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Models\TempatModel.php(23): CodeIgniter\BaseModel->findAll()
+ 6 APPPATH\Controllers\Govisit.php(58): App\Models\TempatModel->getAllWithKategori()
+ 7 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\GoVisit->eksplorasi()
+ 8 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+ 9 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-05-18 14:30:01 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp8\htdocs\govisit\system\Database\BaseBuilder.php(1678): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', NULL, false)
+#4 C:\xampp8\htdocs\govisit\system\Model.php(759): CodeIgniter\Database\BaseBuilder->countAll()
+#5 C:\xampp8\htdocs\govisit\app\Controllers\GoVisit.php(28): CodeIgniter\Model->__call('countAll', Array)
+#6 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(951): App\Controllers\GoVisit->beranda()
+#7 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+#8 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp8\htdocs\govisit\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp8\htdocs\govisit\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp8\htdocs\govisit\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp8\htdocs\govisit\system\Database\BaseBuilder.php(1678): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', NULL, false)
+#3 C:\xampp8\htdocs\govisit\system\Model.php(759): CodeIgniter\Database\BaseBuilder->countAll()
+#4 C:\xampp8\htdocs\govisit\app\Controllers\GoVisit.php(28): CodeIgniter\Model->__call('countAll', Array)
+#5 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(951): App\Controllers\GoVisit->beranda()
+#6 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+#7 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp8\htdocs\govisit\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp8\htdocs\govisit\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp8\htdocs\govisit\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-05-18 14:30:01 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1678): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows` FROM `tempat`', null, false)
+ 3 SYSTEMPATH\Model.php(759): CodeIgniter\Database\BaseBuilder->countAll()
+ 4 APPPATH\Controllers\GoVisit.php(28): CodeIgniter\Model->__call('countAll', [])
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\GoVisit->beranda()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2026-05-18 14:30:01 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\xampp8\htdocs\govisit\system\Database\BaseBuilder.php(1678): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', NULL, false)
+#4 C:\xampp8\htdocs\govisit\system\Model.php(759): CodeIgniter\Database\BaseBuilder->countAll()
+#5 C:\xampp8\htdocs\govisit\app\Controllers\GoVisit.php(28): CodeIgniter\Model->__call('countAll', Array)
+#6 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(951): App\Controllers\GoVisit->beranda()
+#7 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+#8 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp8\htdocs\govisit\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp8\htdocs\govisit\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp8\htdocs\govisit\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\xampp8\htdocs\govisit\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp8\htdocs\govisit\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp8\htdocs\govisit\system\Database\BaseBuilder.php(1678): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*)...', NULL, false)
+#3 C:\xampp8\htdocs\govisit\system\Model.php(759): CodeIgniter\Database\BaseBuilder->countAll()
+#4 C:\xampp8\htdocs\govisit\app\Controllers\GoVisit.php(28): CodeIgniter\Model->__call('countAll', Array)
+#5 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(951): App\Controllers\GoVisit->beranda()
+#6 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+#7 C:\xampp8\htdocs\govisit\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp8\htdocs\govisit\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp8\htdocs\govisit\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#10 C:\xampp8\htdocs\govisit\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#11 {main}
+CRITICAL - 2026-05-18 14:30:01 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1678): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows` FROM `tempat`', null, false)
+ 3 SYSTEMPATH\Model.php(759): CodeIgniter\Database\BaseBuilder->countAll()
+ 4 APPPATH\Controllers\GoVisit.php(28): CodeIgniter\Model->__call('countAll', [])
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\GoVisit->beranda()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GoVisit))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+WARNING - 2026-05-18 16:04:12 --> Routes file not found: "C:\xampp8\htdocs\govisit\app\Config/Routes.php"
