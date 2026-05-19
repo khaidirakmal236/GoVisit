@@ -8,14 +8,19 @@ class Home extends BaseController
     {
         return view('welcome_message');
     }
-    public function monkey(): string
-    {
-        return view('about-us');
-    }
+
      public function about_us(): string
     {
         return view('about-us');
     }
-    
+    public function monkey(){
+        echo "test 1";
+    }
+    public function wisata(){
+        return view ('nio');
+    }
+    public function hidden_gems($apa){
+        echo "nasi kuning mak limha". $apa;
+    }
     
 }
