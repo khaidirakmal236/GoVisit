@@ -4,17 +4,16 @@ namespace App\Controllers;
 
 use App\Models\TempatModel;
 
-class Home extends BaseController
+class HiddenGem extends BaseController
 {
     public function index()
     {
         $model = new TempatModel();
 
         $data = [
-            'tempat'     => $model->getAktif(),
             'hidden_gem' => $model->getByKategori('hidden_gem'),
         ];
 
-        return view('beranda', $data);
+        return view('hidden_gem', $data);
     }
 }

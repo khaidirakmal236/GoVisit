@@ -1,132 +1,104 @@
-<?= view('layout/header', ['title' => $title]) ?>
+<?= $this->include('layout/header') ?>
 
-<!-- PAGE HERO -->
-<section class="page-hero">
+<main>
+
+<!-- ── PAGE HEADER ── -->
+<section style="background:linear-gradient(135deg, #0F6E56, #1D9E75); padding:2.5rem 1.5rem; text-align:center;">
     <div class="container">
-        <h1><?= esc($heading) ?></h1>
-        <p class="mb-0">Temukan tempat wisata, cafe hits, dan hidden gems terbaik dari seluruh Indonesia.</p>
+        <h1 style="font-size:2rem; font-weight:700; color:white; margin-bottom:8px;">Eksplorasi Tempat</h1>
+        <p style="color:rgba(255,255,255,0.85); font-size:14px;">Temukan wisata, cafe, dan hidden gem terbaik di Palu</p>
     </div>
 </section>
 
-<div class="container py-5">
-    <div class="row g-4">
+<!-- ── SEARCH + FILTER ── -->
+<section style="background:white; border-bottom:1px solid #E5E7EB; padding:1rem 1.5rem; position:sticky; top:64px; z-index:50;">
+    <div class="container">
+        <form method="GET" action="<?= base_url('eksplorasi') ?>" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <!-- Search -->
+            <input
+                type="text"
+                name="q"
+                value="<?= esc($keyword ?? '') ?>"
+                placeholder="Cari tempat..."
+                style="flex:1; min-width:200px; padding:10px 16px; border:1.5px solid #E5E7EB; border-radius:8px; font-size:14px; font-family:inherit; outline:none;"
+                onfocus="this.style.borderColor='#1D9E75'" onblur="this.style.borderColor='#E5E7EB'"
+            >
+            <!-- Filter Kategori -->
+            <select name="kategori" style="padding:10px 16px; border:1.5px solid #E5E7EB; border-radius:8px; font-size:14px; font-family:inherit; outline:none; background:white; cursor:pointer;">
+                <option value="" <?= empty($kategori) ? 'selected' : '' ?>>Semua Kategori</option>
+                <option value="wisata"     <?= ($kategori ?? '') === 'wisata'     ? 'selected' : '' ?>>🏔️ Wisata</option>
+                <option value="cafe"       <?= ($kategori ?? '') === 'cafe'       ? 'selected' : '' ?>>☕ Cafe</option>
+                <option value="hidden_gem" <?= ($kategori ?? '') === 'hidden_gem' ? 'selected' : '' ?>>💎 Hidden Gem</option>
+            </select>
+            <button type="submit" style="background:#1D9E75; color:white; border:none; padding:10px 20px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:inherit;">
+                🔍 Cari
+            </button>
+            <?php if (!empty($keyword) || !empty($kategori)): ?>
+            <a href="<?= base_url('eksplorasi') ?>" style="color:#6B7280; font-size:13px; text-decoration:none; padding:10px;">✕ Reset</a>
+            <?php endif; ?>
+        </form>
+    </div>
+</section>
 
-        <!-- FILTER SIDEBAR -->
-        <aside class="col-lg-3">
-            <div class="bg-white rounded-4 p-4 shadow-sm" style="position:sticky; top:80px;">
-                <h6 class="fw-bold mb-3" style="color:#0A4D8C; text-transform:uppercase; font-size:.78rem; letter-spacing:.08em;">
-                    Filter
-                </h6>
+<!-- ── HASIL ── -->
+<section style="padding:2rem 1.5rem;">
+    <div class="container">
 
-                <p class="fw-semibold small mb-2">Kategori</p>
-                <?php foreach (['Semua', 'Wisata Alam', 'Cafe Hits', 'Hidden Gems'] as $kat): ?>
-                    <div class="form-check mb-1">
-                        <input class="form-check-input" type="radio" name="kategori"
-                               id="kat-<?= esc(strtolower(str_replace(' ', '-', $kat))) ?>"
-                               <?= $kat === 'Semua' ? 'checked' : '' ?>>
-                        <label class="form-check-label small"
-                               for="kat-<?= esc(strtolower(str_replace(' ', '-', $kat))) ?>">
-                            <?= esc($kat) ?>
-                        </label>
-                    </div>
-                <?php endforeach; ?>
-
-                <hr>
-                <p class="fw-semibold small mb-2">Rating Minimum</p>
-                <?php foreach (['Semua Rating', '3 Bintang ke Atas', '4 Bintang ke Atas', '4.5 Bintang ke Atas'] as $r): ?>
-                    <div class="form-check mb-1">
-                        <input class="form-check-input" type="radio" name="rating"
-                               id="rat-<?= esc($loop ?? 0) ?>"
-                               <?= $r === 'Semua Rating' ? 'checked' : '' ?>>
-                        <label class="form-check-label small"><?= esc($r) ?></label>
-                    </div>
-                <?php endforeach; ?>
-
-                <hr>
-                <p class="fw-semibold small mb-2">Kota</p>
-                <select class="form-select form-select-sm">
-                    <option>Semua Kota</option>
-                    <?php foreach (['Bandung', 'Yogyakarta', 'Bogor', 'Gunungkidul', 'Lumajang', 'Labuan Bajo'] as $kota): ?>
-                        <option><?= esc($kota) ?></option>
-                    <?php endforeach; ?>
-                </select>
-
-                <button class="btn w-100 mt-3 fw-bold"
-                        style="background:#0A4D8C; color:#fff; border-radius:10px;">
-                    <i class="bi bi-funnel-fill me-1"></i> Terapkan Filter
-                </button>
-            </div>
-        </aside>
-
-        <!-- DAFTAR TEMPAT -->
-        <div class="col-lg-9">
-            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-                <p class="mb-0 text-muted">
-                    Menampilkan <strong><?= count($tempat) ?></strong> tempat
-                </p>
-                <select class="form-select form-select-sm w-auto">
-                    <option>Terbaru</option>
-                    <option>Rating Tertinggi</option>
-                    <option>Nama (A-Z)</option>
-                </select>
-            </div>
-
-            <div class="row g-4">
-                <?php foreach ($tempat as $t): ?>
-                    <div class="col-sm-6 col-xl-4">
-                        <div class="bg-white rounded-4 shadow-sm h-100 d-flex flex-column"
-                             style="border:1px solid rgba(10,77,140,.06); overflow:hidden;">
-                            <!-- Badge kategori -->
-                            <div class="px-3 pt-3">
-                                <span class="badge rounded-pill px-2 py-1"
-                                      style="background:#FFCC3E; color:#1A1A2E; font-size:.7rem; font-weight:700;">
-                                    <?= esc($t['kategori']) ?>
-                                </span>
-                            </div>
-                            <div class="p-3 d-flex flex-column flex-grow-1">
-                                <h5 class="fw-bold mb-1" style="font-size:1rem; color:#1A1A2E;">
-                                    <?= esc($t['nama']) ?>
-                                </h5>
-                                <p class="small text-muted mb-2">
-                                    <i class="bi bi-geo-alt"></i> <?= esc($t['kota']) ?>
-                                </p>
-                                <p class="small mb-3" style="color:#6B7280; flex-grow:1;">
-                                    <?= esc($t['deskripsi']) ?>
-                                </p>
-                                <div class="d-flex align-items-center justify-content-between mt-auto pt-2"
-                                     style="border-top:1px dashed rgba(10,77,140,.12);">
-                                    <div style="color:#FFA52E; font-size:.9rem;">
-                                        <?php
-                                        $r = (float) $t['rating'];
-                                        for ($i = 1; $i <= 5; $i++) {
-                                            echo $i <= $r ? '<i class="bi bi-star-fill"></i>' : '<i class="bi bi-star"></i>';
-                                        }
-                                        ?>
-                                        <strong class="ms-1 text-dark"><?= esc($t['rating']) ?></strong>
-                                    </div>
-                                    <a href="/govisit/detail/<?= $t['id'] ?>"
-                                       class="btn btn-sm fw-bold"
-                                       style="background:#FF4D2E; color:#fff; border-radius:8px; font-size:.78rem;">
-                                        Detail <i class="bi bi-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-
-            <!-- Pagination text -->
-            <div class="text-center mt-5">
-                <p class="text-muted small">Menampilkan 8 dari 12 tempat</p>
-                <button class="btn px-4 fw-semibold"
-                        style="border:2px solid #0A4D8C; color:#0A4D8C; border-radius:10px;">
-                    Muat Lebih Banyak
-                </button>
-            </div>
+        <!-- Info jumlah hasil -->
+        <div style="margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center;">
+            <p style="font-size:14px; color:#6B7280;">
+                Menampilkan <strong style="color:#1A1A2E;"><?= count($tempat) ?> tempat</strong>
+                <?php if (!empty($keyword)): ?>
+                    untuk "<strong><?= esc($keyword) ?></strong>"
+                <?php endif; ?>
+                <?php if (!empty($kategori)): ?>
+                    · kategori <strong><?= ucfirst(str_replace('_', ' ', $kategori)) ?></strong>
+                <?php endif; ?>
+            </p>
         </div>
 
-    </div>
-</div>
+        <!-- Grid Kartu -->
+        <?php if (!empty($tempat)): ?>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:1.25rem;">
+            <?php foreach ($tempat as $t): ?>
+            <a href="<?= base_url('tempat/' . $t['id']) ?>" style="text-decoration:none; color:inherit;">
+                <div style="background:white; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.07); display:flex; transition:transform 0.2s, box-shadow 0.2s;"
+                    onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)'"
+                    onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.07)'">
+                    <!-- Thumbnail -->
+                    <div style="width:100px; flex-shrink:0; background:<?= $t['kategori'] === 'wisata' ? '#C0DD97' : ($t['kategori'] === 'cafe' ? '#FAC775' : '#CECBF6') ?>; display:flex; align-items:center; justify-content:center; font-size:2rem;">
+                        <?= $t['kategori'] === 'wisata' ? '🏔️' : ($t['kategori'] === 'cafe' ? '☕' : '💎') ?>
+                    </div>
+                    <!-- Info -->
+                    <div style="padding:1rem; flex:1;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                            <span class="badge badge-<?= $t['kategori'] === 'hidden_gem' ? 'gem' : $t['kategori'] ?>">
+                                <?= $t['kategori'] === 'hidden_gem' ? 'Hidden Gem' : ucfirst($t['kategori']) ?>
+                            </span>
+                            <span class="star-rating">⭐ <?= number_format($t['rating_avg'], 1) ?></span>
+                        </div>
+                        <h3 style="font-size:15px; font-weight:700; color:#1A1A2E; margin-bottom:4px;"><?= esc($t['nama_tempat']) ?></h3>
+                        <p style="font-size:12px; color:#6B7280; margin-bottom:6px;">📍 <?= esc($t['alamat']) ?></p>
+                        <p style="font-size:12px; color:#6B7280;">🕐 <?= esc($t['jam_buka'] ?? '-') ?></p>
+                    </div>
+                </div>
+            </a>
+            <?php endforeach; ?>
+        </div>
 
-<?= view('layout/footer') ?>
+        <?php else: ?>
+        <!-- Kosong -->
+        <div style="text-align:center; padding:4rem 1rem;">
+            <div style="font-size:3rem; margin-bottom:1rem;">🔍</div>
+            <h3 style="font-size:1.2rem; color:#1A1A2E; margin-bottom:8px;">Tidak ada hasil</h3>
+            <p style="color:#6B7280; font-size:14px;">Coba kata kunci atau kategori yang berbeda</p>
+            <a href="<?= base_url('eksplorasi') ?>" style="display:inline-block; margin-top:1rem; background:#1D9E75; color:white; padding:10px 20px; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none;">Lihat semua tempat</a>
+        </div>
+        <?php endif; ?>
+
+    </div>
+</section>
+
+</main>
+
+<?= $this->include('layout/footer') ?>
