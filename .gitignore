@@ -1,2 +1,18 @@
 vendor
 .env
+
+# CodeIgniter 4 runtime files (jangan di-commit)
+writable/cache/*
+!writable/cache/index.html
+writable/debugbar/*
+!writable/debugbar/index.html
+writable/logs/*
+!writable/logs/index.html
+writable/session/*
+!writable/session/index.html
+writable/uploads/*
+!writable/uploads/index.html
+
+# OS files
+Thumbs.db
+.DS_Store
