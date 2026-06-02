@@ -25,8 +25,7 @@ class CreateKategoriInfoTable extends Migration
                 'null'       => true,
             ],
             'deskripsi_singkat' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
+                'type'       => 'TEXT',
                 'null'       => true,
             ],
             'created_at' => [

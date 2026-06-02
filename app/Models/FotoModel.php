@@ -6,9 +6,12 @@ use CodeIgniter\Model;
 
 class FotoModel extends Model
 {
-    protected $table         = 'foto';
-    protected $primaryKey    = 'id';
-    protected $returnType    = 'array';
+    protected $table            = 'foto';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = true;
+    protected $protectFields    = true;
 
     protected $allowedFields = [
         'id_tempat',
@@ -17,14 +20,9 @@ class FotoModel extends Model
     ];
 
     protected $useTimestamps = true;
+    protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    // Ambil semua foto berdasarkan id tempat
-    public function getByTempat(int $idTempat)
-    {
-        return $this->where('id_tempat', $idTempat)->findAll();
-    }
+   
 }
-#khai suka salto
-#nasi kuning
