@@ -27,3 +27,4 @@ class FotoModel extends Model
     }
 }
 #khai suka salto
+#nasi kuning
