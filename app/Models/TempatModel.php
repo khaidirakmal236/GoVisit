@@ -9,7 +9,7 @@ class TempatModel extends Model
     protected $table         = 'tempat';
     protected $primaryKey    = 'id';
     protected $returnType    = 'array';
-    protected $useSoftDeletes = false;
+    protected $useSoftDeletes = true;
 
     protected $allowedFields = [
         'nama_tempat',
@@ -27,27 +27,5 @@ class TempatModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    // Ambil semua tempat yang aktif
-    public function getAktif()
-    {
-        return $this->where('status', 'aktif')->findAll();
-    }
-
-    // Ambil berdasarkan kategori
-    public function getByKategori(string $kategori)
-    {
-        return $this->where('status', 'aktif')
-                    ->where('kategori', $kategori)
-                    ->findAll();
-    }
-
-    // Ambil dengan rata-rata rating terbaru dari tabel ulasan
-    public function getWithRating()
-    {
-        return $this->select('tempat.*, AVG(ulasan.rating) as rating_avg')
-                    ->join('ulasan', 'ulasan.id_tempat = tempat.id', 'left')
-                    ->where('tempat.status', 'aktif')
-                    ->groupBy('tempat.id')
-                    ->findAll();
-    }
+    
 }
