@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
+use App\Controllers\BaseController;
 use App\Models\TempatModel;
 
-class Admin extends BaseController
+class Dashboard extends BaseController
 {
     protected $model;
 
@@ -13,7 +14,6 @@ class Admin extends BaseController
         $this->model = new TempatModel();
     }
 
-    // Halaman utama admin - daftar semua tempat
     public function index()
     {
         $data = [
@@ -22,16 +22,13 @@ class Admin extends BaseController
         return view('admin/index', $data);
     }
 
-    // Halaman form tambah tempat
     public function tambah()
     {
         return view('admin/form');
     }
 
-    // Simpan data tempat baru
     public function simpan()
     {
-        // 1. Handle upload foto dulu
         $namaFoto = null;
         $foto = $this->request->getFile('foto');
         if ($foto && $foto->isValid() && !$foto->hasMoved()) {
@@ -39,7 +36,6 @@ class Admin extends BaseController
             $foto->move(FCPATH . 'uploads/tempat', $namaFoto);
         }
 
-        // 2. Insert ke tabel tempat termasuk foto_utama
         $this->model->insert([
             'nama_tempat' => $this->request->getPost('nama_tempat'),
             'kategori'    => $this->request->getPost('kategori'),
@@ -56,7 +52,6 @@ class Admin extends BaseController
         return redirect()->to(base_url('admin'));
     }
 
-    // Halaman form edit tempat
     public function edit($id)
     {
         $data = [
@@ -65,7 +60,6 @@ class Admin extends BaseController
         return view('admin/form', $data);
     }
 
-    // Update data tempat
     public function update($id)
     {
         $dataLama = $this->model->find($id);
@@ -73,7 +67,6 @@ class Admin extends BaseController
 
         $foto = $this->request->getFile('foto');
         if ($foto && $foto->isValid() && !$foto->hasMoved()) {
-            // Hapus foto lama kalau ada
             if (!empty($namaFoto) && file_exists(FCPATH . 'uploads/tempat/' . $namaFoto)) {
                 unlink(FCPATH . 'uploads/tempat/' . $namaFoto);
             }
@@ -97,12 +90,10 @@ class Admin extends BaseController
         return redirect()->to(base_url('admin'));
     }
 
-    // Hapus tempat
     public function hapus($id)
     {
         $tempat = $this->model->find($id);
 
-        // Hapus file foto kalau ada
         if (!empty($tempat['foto_utama']) && file_exists(FCPATH . 'uploads/tempat/' . $tempat['foto_utama'])) {
             unlink(FCPATH . 'uploads/tempat/' . $tempat['foto_utama']);
         }

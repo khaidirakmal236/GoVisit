@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\User;
 
+use App\Controllers\BaseController;
 use App\Models\UlasanModel;
 use App\Models\TempatModel;
 
@@ -21,7 +22,6 @@ class Ulasan extends BaseController
             'komentar'        => $this->request->getPost('komentar'),
         ]);
 
-        // Update rating_avg di tabel tempat
         $rataRating = $ulasanModel->getRataRating($idTempat);
         $tempatModel->update($idTempat, ['rating_avg' => $rataRating]);
 

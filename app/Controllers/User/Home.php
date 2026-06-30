@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\User;
 
+use App\Controllers\BaseController;
 use App\Models\TempatModel;
 
 class Home extends BaseController
@@ -16,5 +17,15 @@ class Home extends BaseController
         ];
 
         return view('beranda', $data);
+    }
+
+    public function about_us()
+    {
+        return view('about-us');
+    }
+
+    public function monkey()
+    {
+        return view('monkey');
     }
 }

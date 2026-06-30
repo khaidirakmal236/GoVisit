@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\User;
 
+use App\Controllers\BaseController;
 use App\Models\TempatModel;
 
 class Eksplorasi extends BaseController
@@ -12,7 +13,6 @@ class Eksplorasi extends BaseController
         $keyword  = $this->request->getGet('q');
         $kategori = $this->request->getGet('kategori');
 
-        // Build query
         $builder = $model->where('status', 'aktif');
 
         if (!empty($keyword)) {

@@ -6,29 +6,29 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->get('/',         'Home::index');
-$routes->get('/home',     'Home::index');
-$routes->get('/about-us', 'Home::about_us');
-$routes->get('/monkey',   'Home::monkey');
+// User routes
+$routes->get('/',         'User\Home::index');
+$routes->get('/home',     'User\Home::index');
+$routes->get('/about-us', 'User\Home::about_us');
+$routes->get('/monkey',   'User\Home::monkey');
 
-// goVisit routes
-$routes->get('/eksplorasi',           'Eksplorasi::index');
-$routes->get('/api/suggest',          'Eksplorasi::suggest');
-$routes->get('/hidden-gem',           'HiddenGem::index');
-$routes->get('/tempat/(:num)',        'Tempat::detail/$1');
-$routes->post('/ulasan/simpan',       'Ulasan::simpan');
+$routes->get('/eksplorasi',           'User\Eksplorasi::index');
+$routes->get('/api/suggest',          'User\Eksplorasi::suggest');
+$routes->get('/hidden-gem',           'User\HiddenGem::index');
+$routes->get('/tempat/(:num)',        'User\Tempat::detail/$1');
+$routes->post('/ulasan/simpan',       'User\Ulasan::simpan');
 
 // Admin login (publik)
-$routes->get('/admin/login',          'LoginAdmin::index');
-$routes->post('/admin/login/proses',  'LoginAdmin::proses');
-$routes->get('/admin/logout',         'LoginAdmin::logout');
+$routes->get('/admin/login',          'Admin\Login::index');
+$routes->post('/admin/login/proses',  'Admin\Login::proses');
+$routes->get('/admin/logout',         'Admin\Login::logout');
 
 // Admin routes (protected)
 $routes->group('admin', ['filter' => 'authAdmin'], static function($routes) {
-    $routes->get('/',                'Admin::index');
-    $routes->get('tambah',          'Admin::tambah');
-    $routes->post('simpan',         'Admin::simpan');
-    $routes->get('edit/(:num)',     'Admin::edit/$1');
-    $routes->post('update/(:num)',  'Admin::update/$1');
-    $routes->get('hapus/(:num)',    'Admin::hapus/$1');
+    $routes->get('/',                'Admin\Dashboard::index');
+    $routes->get('tambah',          'Admin\Dashboard::tambah');
+    $routes->post('simpan',         'Admin\Dashboard::simpan');
+    $routes->get('edit/(:num)',     'Admin\Dashboard::edit/$1');
+    $routes->post('update/(:num)',  'Admin\Dashboard::update/$1');
+    $routes->get('hapus/(:num)',    'Admin\Dashboard::hapus/$1');
 });
