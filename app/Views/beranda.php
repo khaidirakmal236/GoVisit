@@ -1,115 +1,263 @@
 <?= $this->include('layout/header') ?>
 
+<style>
+/* ── HERO ── */
+.hero {
+    background: linear-gradient(135deg, #0B5C47 0%, #1D9E75 55%, #5DCAA5 100%);
+    padding: 5rem 1.5rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='40' cy='40' r='35'/%3E%3Ccircle cx='10' cy='10' r='6'/%3E%3Ccircle cx='70' cy='70' r='6'/%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.18); backdrop-filter: blur(6px);
+    color: white; padding: 6px 18px; border-radius: 999px;
+    font-size: 13px; font-weight: 600; margin-bottom: 1.25rem;
+    border: 1px solid rgba(255,255,255,0.25);
+}
+.hero h1 {
+    font-size: clamp(2rem,5vw,3.2rem); font-weight: 800;
+    color: white; margin-bottom: 1rem; line-height: 1.2; letter-spacing: -0.5px;
+    position: relative;
+}
+.hero h1 span { color: #9FE1CB; }
+.hero p {
+    color: rgba(255,255,255,0.88); font-size: 1.05rem;
+    margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto;
+    line-height: 1.6; position: relative;
+}
+.hero-search {
+    display: flex; gap: 8px; max-width: 520px; margin: 0 auto;
+    position: relative;
+}
+.hero-search input {
+    flex: 1; padding: 15px 20px; border-radius: 14px; border: none;
+    font-size: 14px; font-family: inherit; outline: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    color: #1A1A2E;
+}
+.hero-search button {
+    background: #BA7517; color: white; border: none;
+    padding: 15px 26px; border-radius: 14px; font-size: 14px;
+    font-weight: 700; cursor: pointer; white-space: nowrap;
+    font-family: inherit; transition: background 0.2s;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+.hero-search button:hover { background: #9A6010; }
+
+/* ── STATS ── */
+.stats-bar {
+    background: white; border-bottom: 1px solid #E5E7EB;
+    padding: 1rem 1.5rem;
+}
+.stats-bar .container {
+    display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+}
+.stat-item { text-align: center; }
+.stat-num  { font-size: 1.4rem; font-weight: 800; color: #1D9E75; line-height: 1; }
+.stat-lbl  { font-size: 11px; color: #9CA3AF; font-weight: 500; margin-top: 2px; }
+
+/* ── SECTION HEADERS ── */
+.sec-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; }
+.sec-title  { font-size: 1.4rem; font-weight: 800; color: #1A1A2E; margin-bottom: 3px; letter-spacing: -0.3px; }
+.sec-sub    { font-size: 13px; color: #9CA3AF; }
+.sec-link   { font-size: 13px; color: #1D9E75; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.sec-link:hover { text-decoration: underline; }
+
+/* ── KATEGORI PILLS ── */
+.category-pills {
+    background: white; padding: 1rem 1.5rem;
+    border-bottom: 1px solid #F3F4F6;
+}
+.category-pills .container { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.cat-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 18px; border-radius: 999px; font-size: 13px;
+    font-weight: 600; text-decoration: none; transition: all 0.2s;
+    border: 2px solid transparent;
+}
+.cat-pill-all    { background: #1D9E75; color: white; }
+.cat-pill-wisata { background: #EAF3DE; color: #3B6D11; }
+.cat-pill-cafe   { background: #FAEEDA; color: #633806; }
+.cat-pill-gem    { background: #EEEDFE; color: #3C3489; }
+.cat-pill:hover  { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+/* ── PLACE CARDS ── */
+.place-card {
+    background: white; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.25s, box-shadow 0.25s;
+    text-decoration: none; color: inherit; display: block;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+.place-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+
+.card-thumb {
+    height: 180px; overflow: hidden; position: relative;
+    display: flex; align-items: center; justify-content: center; font-size: 3rem;
+}
+.card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.place-card:hover .card-thumb img { transform: scale(1.05); }
+
+.card-badge-pos  { position: absolute; top: 12px; left: 12px; }
+.card-rating-pos {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(4px);
+    color: white; font-size: 12px; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px;
+}
+.card-body { padding: 1rem 1.1rem 1.1rem; }
+.card-name { font-size: 15px; font-weight: 700; color: #1A1A2E; margin-bottom: 5px; }
+.card-loc  { font-size: 12px; color: #9CA3AF; display: flex; align-items: center; gap: 4px; }
+
+/* ── GEM CARDS ── */
+.gem-card {
+    background: white; border-radius: 14px; padding: 1.1rem;
+    display: flex; align-items: center; gap: 1rem;
+    box-shadow: 0 2px 12px rgba(127,119,221,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; color: inherit; border: 1px solid #EEEDFE;
+}
+.gem-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(127,119,221,0.2); }
+.gem-icon {
+    width: 50px; height: 50px; background: #EEEDFE; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+}
+.gem-name { font-size: 14px; font-weight: 700; color: #3C3489; margin-bottom: 3px; }
+.gem-loc  { font-size: 12px; color: #7F77DD; }
+.gem-rating { font-size: 12px; font-weight: 700; color: #BA7517; margin-left: auto; flex-shrink: 0; }
+</style>
+
 <main>
 
 <!-- ── HERO ── -->
-<section style="background: linear-gradient(135deg, #0F6E56 0%, #1D9E75 60%, #5DCAA5 100%); padding: 5rem 1.5rem; text-align: center; position: relative; overflow: hidden;">
-    <div style="position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2220%22 cy=%2220%22 r=%2240%22 fill=%22rgba(255,255,255,0.03)%22/><circle cx=%2280%22 cy=%2280%22 r=%2260%22 fill=%22rgba(255,255,255,0.03)%22/></svg>');"></div>
-    <div class="container" style="position:relative">
-        <div style="display:inline-block; background:rgba(255,255,255,0.15); color:white; padding:6px 16px; border-radius:20px; font-size:13px; font-weight:500; margin-bottom:1rem;">
-            🌴 Wisata Kota Palu & Sekitarnya
-        </div>
-        <h1 style="font-size:clamp(2rem,5vw,3.2rem); font-weight:700; color:white; margin-bottom:1rem; line-height:1.2;">
-            Jelajahi Keindahan<br><span style="color:#9FE1CB;">Kota Palu</span>
-        </h1>
-        <p style="color:rgba(255,255,255,0.85); font-size:1.1rem; margin-bottom:2rem; max-width:500px; margin-left:auto; margin-right:auto;">
-            Temukan destinasi wisata, cafe hits, dan hidden gem terbaik di Palu
-        </p>
-        <form action="<?= base_url('eksplorasi') ?>" method="GET" style="display:flex; gap:8px; max-width:480px; margin:0 auto;">
-            <input
-                type="text"
-                name="q"
-                placeholder="Cari tempat di Palu..."
-                style="flex:1; padding:14px 20px; border-radius:10px; border:none; font-size:14px; font-family:inherit; outline:none; box-shadow:0 4px 20px rgba(0,0,0,0.15);"
-            >
-            <button type="submit" style="background:#BA7517; color:white; border:none; padding:14px 24px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; white-space:nowrap;">
-                🔍 Cari
-            </button>
+<section class="hero">
+    <div class="container" style="position:relative;">
+        <div class="hero-badge">🌴 Wisata Kota Palu & Sekitarnya</div>
+        <h1>Jelajahi Keindahan<br><span>Kota Palu</span></h1>
+        <p>Temukan destinasi wisata, cafe hits, dan hidden gem terbaik di Palu</p>
+        <form action="<?= base_url('eksplorasi') ?>" method="GET" class="hero-search" id="heroSearchForm">
+            <div class="ac-wrap" style="flex:1;">
+                <input type="text" name="q" id="heroSearchInput" placeholder="Cari tempat di Palu..." autocomplete="off" style="width:100%;">
+            </div>
+            <button type="submit">🔍 Cari</button>
         </form>
+    </div>
+
+    <!-- Wave bottom -->
+    <div style="position:absolute; bottom:-1px; left:0; right:0; line-height:0;">
+        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%; height:60px;">
+            <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#F8FAF9"/>
+        </svg>
     </div>
 </section>
 
-<!-- ── FILTER KATEGORI ── -->
-<section style="background:white; border-bottom:1px solid #E5E7EB; padding:1rem 1.5rem;">
-    <div class="container" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-        <span style="font-size:13px; color:#6B7280; font-weight:500; margin-right:4px;">Filter:</span>
-        <a href="<?= base_url('eksplorasi') ?>" style="text-decoration:none; padding:7px 16px; border-radius:20px; font-size:13px; font-weight:500; background:#1D9E75; color:white;">Semua</a>
-        <a href="<?= base_url('eksplorasi?kategori=wisata') ?>" style="text-decoration:none; padding:7px 16px; border-radius:20px; font-size:13px; font-weight:500; background:#EAF3DE; color:#3B6D11;">🏔️ Wisata</a>
-        <a href="<?= base_url('eksplorasi?kategori=cafe') ?>" style="text-decoration:none; padding:7px 16px; border-radius:20px; font-size:13px; font-weight:500; background:#FAEEDA; color:#633806;">☕ Cafe</a>
-        <a href="<?= base_url('hidden-gem') ?>" style="text-decoration:none; padding:7px 16px; border-radius:20px; font-size:13px; font-weight:500; background:#EEEDFE; color:#3C3489;">💎 Hidden Gem</a>
+<!-- ── STATS ── -->
+<section class="stats-bar">
+    <div class="container">
+        <div class="stat-item">
+            <div class="stat-num"><?= count($tempat) ?>+</div>
+            <div class="stat-lbl">Destinasi</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num"><?= count(array_filter($tempat, fn($t) => $t['kategori']==='wisata')) ?>+</div>
+            <div class="stat-lbl">Wisata Alam</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num"><?= count(array_filter($tempat, fn($t) => $t['kategori']==='cafe')) ?>+</div>
+            <div class="stat-lbl">Cafe & Kuliner</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num"><?= count($hidden_gem) ?>+</div>
+            <div class="stat-lbl">Hidden Gem</div>
+        </div>
+    </div>
+</section>
+
+<!-- ── KATEGORI PILLS ── -->
+<section class="category-pills">
+    <div class="container">
+        <a href="<?= base_url('eksplorasi') ?>" class="cat-pill cat-pill-all">🗺️ Semua</a>
+        <a href="<?= base_url('eksplorasi?kategori=wisata') ?>" class="cat-pill cat-pill-wisata">🏔️ Wisata</a>
+        <a href="<?= base_url('eksplorasi?kategori=cafe') ?>" class="cat-pill cat-pill-cafe">☕ Cafe</a>
+        <a href="<?= base_url('hidden-gem') ?>" class="cat-pill cat-pill-gem">💎 Hidden Gem</a>
     </div>
 </section>
 
 <!-- ── REKOMENDASI ── -->
-<section style="padding:3rem 1.5rem;">
+<section style="padding:2.5rem 1.5rem;">
     <div class="container">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+        <div class="sec-header">
             <div>
-                <h2 style="font-size:1.5rem; font-weight:700; color:#1A1A2E;">Rekomendasi Untukmu</h2>
-                <p style="color:#6B7280; font-size:14px; margin-top:4px;">Destinasi terpopuler di Kota Palu</p>
+                <div class="sec-title">✨ Rekomendasi Untukmu</div>
+                <div class="sec-sub">Destinasi terpopuler di Kota Palu</div>
             </div>
-            <a href="<?= base_url('eksplorasi') ?>" style="font-size:13px; color:#1D9E75; font-weight:600; text-decoration:none;">Lihat semua →</a>
+            <a href="<?= base_url('eksplorasi') ?>" class="sec-link">Lihat semua →</a>
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:1.25rem;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(270px,1fr)); gap:1.25rem;">
             <?php if (!empty($tempat)): ?>
                 <?php foreach ($tempat as $t): ?>
-                <a href="<?= base_url('tempat/' . $t['id']) ?>" style="text-decoration:none; color:inherit;">
-                    <div style="background:white; border-radius:14px; overflow:hidden; box-shadow:0 2px 16px rgba(0,0,0,0.07); transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 16px rgba(0,0,0,0.07)'">
-
-                        <!-- Gambar / Placeholder -->
-                        <div style="height:160px; background:<?= $t['kategori'] === 'wisata' ? '#C0DD97' : ($t['kategori'] === 'cafe' ? '#FAC775' : '#CECBF6') ?>; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:3rem;">
-                            <?php if (!empty($t['foto_utama'])): ?>
-                                <img src="<?= base_url('uploads/tempat/' . $t['foto_utama']) ?>"
-                                     alt="<?= esc($t['nama_tempat']) ?>"
-                                     style="width:100%; height:160px; object-fit:cover;">
-                            <?php else: ?>
-                                <?= $t['kategori'] === 'wisata' ? '🏔️' : ($t['kategori'] === 'cafe' ? '☕' : '💎') ?>
-                            <?php endif; ?>
+                <a href="<?= base_url('tempat/' . $t['id']) ?>" class="place-card">
+                    <div class="card-thumb" style="background:<?= $t['kategori']==='wisata' ? '#C0DD97' : ($t['kategori']==='cafe' ? '#FAC775' : '#CECBF6') ?>;">
+                        <?php if (!empty($t['foto_utama'])): ?>
+                            <img src="<?= base_url('uploads/tempat/' . $t['foto_utama']) ?>" alt="<?= esc($t['nama_tempat']) ?>">
+                        <?php else: ?>
+                            <?= $t['kategori']==='wisata' ? '🏔️' : ($t['kategori']==='cafe' ? '☕' : '💎') ?>
+                        <?php endif; ?>
+                        <div class="card-badge-pos">
+                            <span class="badge badge-<?= $t['kategori']==='hidden_gem' ? 'gem' : $t['kategori'] ?>">
+                                <?= $t['kategori']==='hidden_gem' ? 'Hidden Gem' : ucfirst($t['kategori']) ?>
+                            </span>
                         </div>
-
-                        <div style="padding:1rem;">
-                            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
-                                <span class="badge badge-<?= $t['kategori'] === 'hidden_gem' ? 'gem' : $t['kategori'] ?>">
-                                    <?= $t['kategori'] === 'hidden_gem' ? 'Hidden Gem' : ucfirst($t['kategori']) ?>
-                                </span>
-                                <span class="star-rating">⭐ <?= number_format($t['rating_avg'], 1) ?></span>
-                            </div>
-                            <h3 style="font-size:15px; font-weight:700; color:#1A1A2E; margin-bottom:4px;"><?= esc($t['nama_tempat']) ?></h3>
-                            <p style="font-size:12px; color:#6B7280;">📍 <?= esc($t['alamat']) ?></p>
+                        <div class="card-rating-pos">⭐ <?= number_format($t['rating_avg'],1) ?></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-name"><?= esc($t['nama_tempat']) ?></div>
+                        <div class="card-loc">📍 <?= esc($t['alamat']) ?></div>
+                        <?php $s = cek_status_buka($t['jam_buka']); ?>
+                        <div style="margin-top:6px; display:inline-flex; align-items:center; gap:5px; background:<?= $s['status']==='buka' ? '#DCFCE7' : ($s['status']==='tutup' ? '#FEE2E2' : '#F3F4F6') ?>; padding:3px 10px; border-radius:999px;">
+                            <span style="width:7px;height:7px;border-radius:50%;background:<?= $s['warna'] ?>;display:inline-block;flex-shrink:0;"></span>
+                            <span style="font-size:11px;font-weight:700;color:<?= $s['warna'] ?>;"><?= $s['label'] ?></span>
                         </div>
                     </div>
                 </a>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p style="color:#6B7280; font-size:14px;">Belum ada data tempat.</p>
+                <p style="color:#9CA3AF; font-size:14px; grid-column:1/-1;">Belum ada data tempat.</p>
             <?php endif; ?>
         </div>
     </div>
 </section>
 
-<!-- ── HIDDEN GEM HIGHLIGHT ── -->
-<section style="background:linear-gradient(135deg, #EEEDFE, #F5F3FF); padding:3rem 1.5rem;">
+<!-- ── HIDDEN GEM ── -->
+<section style="background:linear-gradient(135deg, #F5F3FF, #EEEDFE); padding:2.5rem 1.5rem;">
     <div class="container">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+        <div class="sec-header">
             <div>
-                <h2 style="font-size:1.5rem; font-weight:700; color:#3C3489;">💎 Hidden Gem Pilihan</h2>
-                <p style="color:#534AB7; font-size:14px; margin-top:4px;">Spot tersembunyi yang wajib kamu kunjungi</p>
+                <div class="sec-title" style="color:#3C3489;">💎 Hidden Gem Pilihan</div>
+                <div class="sec-sub" style="color:#7F77DD;">Spot tersembunyi yang wajib kamu kunjungi</div>
             </div>
-            <a href="<?= base_url('hidden-gem') ?>" style="font-size:13px; color:#7F77DD; font-weight:600; text-decoration:none;">Lihat semua →</a>
+            <a href="<?= base_url('hidden-gem') ?>" class="sec-link" style="color:#7F77DD;">Lihat semua →</a>
         </div>
+
         <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:1rem;">
             <?php if (!empty($hidden_gem)): ?>
                 <?php foreach ($hidden_gem as $gem): ?>
-                <a href="<?= base_url('tempat/' . $gem['id']) ?>" style="text-decoration:none;">
-                    <div style="background:white; border-radius:12px; padding:1.25rem; display:flex; align-items:center; gap:1rem; box-shadow:0 2px 12px rgba(127,119,221,0.12); transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">
-                        <div style="width:48px; height:48px; background:#EEEDFE; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0;">💎</div>
-                        <div style="flex:1;">
-                            <div style="font-size:14px; font-weight:700; color:#3C3489;"><?= esc($gem['nama_tempat']) ?></div>
-                            <div style="font-size:12px; color:#7F77DD; margin-top:2px;">📍 <?= esc($gem['alamat']) ?></div>
-                        </div>
-                        <span class="star-rating" style="font-size:12px;">⭐ <?= number_format($gem['rating_avg'], 1) ?></span>
+                <a href="<?= base_url('tempat/' . $gem['id']) ?>" class="gem-card">
+                    <div class="gem-icon">💎</div>
+                    <div style="flex:1; min-width:0;">
+                        <div class="gem-name"><?= esc($gem['nama_tempat']) ?></div>
+                        <div class="gem-loc">📍 <?= esc($gem['alamat']) ?></div>
                     </div>
+                    <div class="gem-rating">⭐ <?= number_format($gem['rating_avg'],1) ?></div>
                 </a>
                 <?php endforeach; ?>
             <?php else: ?>

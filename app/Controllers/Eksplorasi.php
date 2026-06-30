@@ -35,4 +35,24 @@ class Eksplorasi extends BaseController
 
         return view('eksplorasi', $data);
     }
+
+    public function suggest()
+    {
+        $q     = trim($this->request->getGet('q') ?? '');
+        $model = new TempatModel();
+
+        $builder = $model->where('status', 'aktif')
+                         ->select('id, nama_tempat, kategori, alamat, foto_utama');
+
+        if (strlen($q) >= 1) {
+            $builder->groupStart()
+                        ->like('nama_tempat', $q)
+                        ->orLike('alamat', $q)
+                    ->groupEnd();
+        }
+
+        $results = $builder->limit(8)->findAll();
+
+        return $this->response->setJSON($results);
+    }
 }
