@@ -1,0 +1,203 @@
+/* ============================================
+   HOME / BERANDA - goVisit
+   ============================================ */
+
+/* ── HERO ── */
+.hero {
+    background: linear-gradient(135deg, #0B5C47 0%, #1D9E75 55%, #5DCAA5 100%);
+    padding: 5rem 1.5rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='40' cy='40' r='35'/%3E%3Ccircle cx='10' cy='10' r='6'/%3E%3Ccircle cx='70' cy='70' r='6'/%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner {
+    position: relative;
+}
+.hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.18); backdrop-filter: blur(6px);
+    color: white; padding: 6px 18px; border-radius: 999px;
+    font-size: 13px; font-weight: 600; margin-bottom: 1.25rem;
+    border: 1px solid rgba(255,255,255,0.25);
+}
+.hero h1 {
+    font-size: clamp(2rem,5vw,3.2rem); font-weight: 800;
+    color: white; margin-bottom: 1rem; line-height: 1.2; letter-spacing: -0.5px;
+    position: relative;
+}
+.hero h1 span { color: #9FE1CB; }
+.hero p {
+    color: rgba(255,255,255,0.88); font-size: 1.05rem;
+    margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto;
+    line-height: 1.6; position: relative;
+}
+.hero-search {
+    display: flex; gap: 8px; max-width: 520px; margin: 0 auto;
+    position: relative;
+}
+.hero-search .ac-wrap {
+    flex: 1;
+}
+.hero-search input {
+    width: 100%;
+    padding: 15px 20px; border-radius: 14px; border: none;
+    font-size: 14px; font-family: inherit; outline: none;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    color: #1A1A2E;
+}
+.hero-search button {
+    background: #BA7517; color: white; border: none;
+    padding: 15px 26px; border-radius: 14px; font-size: 14px;
+    font-weight: 700; cursor: pointer; white-space: nowrap;
+    font-family: inherit; transition: background 0.2s;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+.hero-search button:hover { background: #9A6010; }
+
+.hero-wave {
+    position: absolute; bottom: -1px; left: 0; right: 0; line-height: 0;
+}
+.hero-wave svg {
+    width: 100%; height: 60px;
+}
+
+/* ── STATS ── */
+.stats-bar {
+    background: white; border-bottom: 1px solid #E5E7EB;
+    padding: 1rem 1.5rem;
+}
+.stats-bar .container {
+    display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+}
+.stat-item { text-align: center; }
+.stat-num  { font-size: 1.4rem; font-weight: 800; color: #1D9E75; line-height: 1; }
+.stat-lbl  { font-size: 11px; color: #9CA3AF; font-weight: 500; margin-top: 2px; }
+
+/* ── SECTION HEADERS ── */
+.sec-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; }
+.sec-title  { font-size: 1.4rem; font-weight: 800; color: #1A1A2E; margin-bottom: 3px; letter-spacing: -0.3px; }
+.sec-sub    { font-size: 13px; color: #9CA3AF; }
+.sec-link   { font-size: 13px; color: #1D9E75; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.sec-link:hover { text-decoration: underline; }
+
+/* Variasi warna section header untuk area hidden gem */
+.sec-title-gem { color: #3C3489; }
+.sec-sub-gem   { color: #7F77DD; }
+.sec-link-gem  { color: #7F77DD; }
+
+/* ── KATEGORI PILLS ── */
+.category-pills {
+    background: white; padding: 1rem 1.5rem;
+    border-bottom: 1px solid #F3F4F6;
+}
+.category-pills .container { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.cat-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 18px; border-radius: 999px; font-size: 13px;
+    font-weight: 600; text-decoration: none; transition: all 0.2s;
+    border: 2px solid transparent;
+}
+.cat-pill-all    { background: #1D9E75; color: white; }
+.cat-pill-wisata { background: #EAF3DE; color: #3B6D11; }
+.cat-pill-cafe   { background: #FAEEDA; color: #633806; }
+.cat-pill-gem    { background: #EEEDFE; color: #3C3489; }
+.cat-pill:hover  { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+/* ── LAYOUT SECTION UMUM ── */
+.section-pad {
+    padding: 2.5rem 1.5rem;
+}
+.gem-section {
+    background: linear-gradient(135deg, #F5F3FF, #EEEDFE);
+    padding: 2.5rem 1.5rem;
+}
+
+/* ── GRID ── */
+.grid-places {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1.25rem;
+}
+.grid-gems {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+/* ── PLACE CARDS ── */
+.place-card {
+    background: white; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.25s, box-shadow 0.25s;
+    text-decoration: none; color: inherit; display: block;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+.place-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+
+.card-thumb {
+    height: 180px; overflow: hidden; position: relative;
+    display: flex; align-items: center; justify-content: center; font-size: 3rem;
+}
+.card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.place-card:hover .card-thumb img { transform: scale(1.05); }
+
+/* Warna background thumbnail per kategori (pengganti inline style dinamis) */
+.card-thumb.thumb-wisata { background: #C0DD97; }
+.card-thumb.thumb-cafe   { background: #FAC775; }
+.card-thumb.thumb-gem    { background: #CECBF6; }
+
+.card-badge-pos  { position: absolute; top: 12px; left: 12px; }
+.card-rating-pos {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.55); backdrop-filter: blur(4px);
+    color: white; font-size: 12px; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px;
+}
+.card-body { padding: 1rem 1.1rem 1.1rem; }
+.card-name { font-size: 15px; font-weight: 700; color: #1A1A2E; margin-bottom: 5px; }
+.card-loc  { font-size: 12px; color: #9CA3AF; display: flex; align-items: center; gap: 4px; }
+
+/* Status buka/tutup */
+.status-pill {
+    margin-top: 6px; display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 10px; border-radius: 999px;
+}
+.status-pill.status-buka  { background: #DCFCE7; }
+.status-pill.status-tutup { background: #FEE2E2; }
+.status-pill.status-lain  { background: #F3F4F6; }
+.status-dot {
+    width: 7px; height: 7px; border-radius: 50%; display: inline-block; flex-shrink: 0;
+}
+.status-label { font-size: 11px; font-weight: 700; }
+
+/* ── GEM CARDS ── */
+.gem-card {
+    background: white; border-radius: 14px; padding: 1.1rem;
+    display: flex; align-items: center; gap: 1rem;
+    box-shadow: 0 2px 12px rgba(127,119,221,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none; color: inherit; border: 1px solid #EEEDFE;
+}
+.gem-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(127,119,221,0.2); }
+.gem-icon {
+    width: 50px; height: 50px; background: #EEEDFE; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+}
+.gem-info { flex: 1; min-width: 0; }
+.gem-name { font-size: 14px; font-weight: 700; color: #3C3489; margin-bottom: 3px; }
+.gem-loc  { font-size: 12px; color: #7F77DD; }
+.gem-rating { font-size: 12px; font-weight: 700; color: #BA7517; margin-left: auto; flex-shrink: 0; }
+
+/* ── EMPTY STATE ── */
+.empty-msg {
+    color: #9CA3AF; font-size: 14px; grid-column: 1/-1;
+}
+.empty-msg-gem {
+    color: #7F77DD; font-size: 14px;
+}
