@@ -6,9 +6,12 @@ use CodeIgniter\Model;
 
 class UlasanModel extends Model
 {
-    protected $table         = 'ulasan';
-    protected $primaryKey    = 'id';
-    protected $returnType    = 'array';
+    protected $table            = 'ulasan';
+    protected $primaryKey       = 'id';
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'array';
+    protected $useSoftDeletes   = true;
+    protected $protectFields    = true;
 
     protected $allowedFields = [
         'id_tempat',
@@ -18,24 +21,14 @@ class UlasanModel extends Model
     ];
 
     protected $useTimestamps = true;
+    protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
 
-    // Ambil semua ulasan berdasarkan id tempat
-    public function getByTempat(int $idTempat)
-    {
-        return $this->where('id_tempat', $idTempat)
-                    ->orderBy('created_at', 'DESC')
-                    ->findAll();
-    }
-
-    // Hitung rata-rata rating suatu tempat
-    public function getRataRating(int $idTempat): float
-    {
-        $result = $this->selectAvg('rating', 'rata_rating')
-                       ->where('id_tempat', $idTempat)
-                       ->first();
-
-        return round((float) ($result['rata_rating'] ?? 0), 1);
-    }
+    public function getByTempat($idTempat)
+{
+    return $this->where('id_tempat', $idTempat)
+                ->findAll();
+}
 }

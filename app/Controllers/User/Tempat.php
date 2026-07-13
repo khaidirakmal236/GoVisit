@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\User;
 
+use App\Controllers\BaseController;
 use App\Models\TempatModel;
 use App\Models\UlasanModel;
 use App\Models\FotoModel;
@@ -16,7 +17,6 @@ class Tempat extends BaseController
 
         $tempat = $tempatModel->find($id);
 
-        // Kalau tempat tidak ditemukan, redirect ke eksplorasi
         if (!$tempat) {
             return redirect()->to(base_url('eksplorasi'));
         }

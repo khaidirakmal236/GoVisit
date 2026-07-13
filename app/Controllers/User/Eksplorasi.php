@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\User;
 
+use App\Controllers\BaseController;
 use App\Models\TempatModel;
 
 class Eksplorasi extends BaseController
@@ -12,7 +13,6 @@ class Eksplorasi extends BaseController
         $keyword  = $this->request->getGet('q');
         $kategori = $this->request->getGet('kategori');
 
-        // Build query
         $builder = $model->where('status', 'aktif');
 
         if (!empty($keyword)) {
@@ -34,5 +34,25 @@ class Eksplorasi extends BaseController
         ];
 
         return view('eksplorasi', $data);
+    }
+
+    public function suggest()
+    {
+        $q     = trim($this->request->getGet('q') ?? '');
+        $model = new TempatModel();
+
+        $builder = $model->where('status', 'aktif')
+                         ->select('id, nama_tempat, kategori, alamat, foto_utama');
+
+        if (strlen($q) >= 1) {
+            $builder->groupStart()
+                        ->like('nama_tempat', $q)
+                        ->orLike('alamat', $q)
+                    ->groupEnd();
+        }
+
+        $results = $builder->limit(8)->findAll();
+
+        return $this->response->setJSON($results);
     }
 }

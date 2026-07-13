@@ -53,15 +53,9 @@
         }
 
         .navbar-brand .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--hijau);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
         }
 
         .navbar-brand .logo-text {
@@ -140,7 +134,7 @@
 
 <nav class="navbar">
     <a href="<?= base_url('/') ?>" class="navbar-brand">
-        <div class="logo-icon">📍</div>
+        <img src="<?= base_url('logo.png') ?>" alt="goVisit" class="logo-icon">
         <span class="logo-text">go<span>Visit</span></span>
     </a>
     <ul class="navbar-menu">

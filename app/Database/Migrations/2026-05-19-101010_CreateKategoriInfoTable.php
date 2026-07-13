@@ -15,25 +15,34 @@ class CreateKategoriInfoTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+
             'nama' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
             ],
+
             'ikon' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
                 'null'       => true,
             ],
+
             'deskripsi_singkat' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
-                'null'       => true,
+                'type' => 'TEXT',
+                'null' => true,
             ],
+
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
             ],
+
             'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+
+            'deleted_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
             ],

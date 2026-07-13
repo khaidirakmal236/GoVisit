@@ -9,10 +9,17 @@
             <h1 style="font-size:1.5rem; font-weight:700; color:white; margin-bottom:4px;">⚙️ Admin Panel</h1>
             <p style="color:#9CA3AF; font-size:14px;">Kelola data tempat wisata goVisit</p>
         </div>
-        <a href="<?= base_url('admin/tambah') ?>"
-           style="background:#1D9E75; color:white; padding:10px 20px; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none;">
-            + Tambah Tempat
-        </a>
+        <div style="display:flex; gap:10px; align-items:center;">
+            <span style="color:#9CA3AF; font-size:13px;">👤 <?= esc(session()->get('nama')) ?></span>
+            <a href="<?= base_url('admin/tambah') ?>"
+               style="background:#1D9E75; color:white; padding:10px 20px; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none;">
+                + Tambah Tempat
+            </a>
+            <a href="<?= base_url('admin/logout') ?>"
+               style="background:#EF4444; color:white; padding:10px 16px; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none;">
+                Keluar
+            </a>
+        </div>
     </div>
 </section>
 

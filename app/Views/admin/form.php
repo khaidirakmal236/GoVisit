@@ -17,7 +17,7 @@
     <div class="container" style="max-width:680px;">
         <div style="background:white; border-radius:14px; padding:2rem; box-shadow:0 2px 12px rgba(0,0,0,0.07);">
 
-            <form action="<?= isset($tempat) ? base_url('admin/update/' . $tempat['id']) : base_url('admin/simpan') ?>" method="POST">
+            <form action="<?= isset($tempat) ? base_url('admin/update/' . $tempat['id']) : base_url('admin/simpan') ?>" method="POST" enctype="multipart/form-data">
                 <?= csrf_field() ?>
 
                 <!-- Nama Tempat -->
@@ -81,6 +81,24 @@
                         placeholder="https://maps.google.com/..."
                         style="width:100%; padding:10px 14px; border:1.5px solid #E5E7EB; border-radius:8px; font-size:14px; font-family:inherit; outline:none;"
                         onfocus="this.style.borderColor='#1D9E75'" onblur="this.style.borderColor='#E5E7EB'">
+                </div>
+
+                <!-- Foto Tempat -->
+                <div style="margin-bottom:1.25rem;">
+                    <label style="font-size:13px; font-weight:600; color:#374151; display:block; margin-bottom:6px;">
+                        Foto Tempat
+                    </label>
+                    <input type="file" name="foto" accept="image/*"
+                        style="width:100%; padding:10px 14px; border:1.5px solid #E5E7EB; border-radius:8px; font-size:14px; font-family:inherit; background:white;">
+
+                    <?php if (!empty($tempat['foto'])): ?>
+                        <div style="margin-top:12px;">
+                            <p style="font-size:13px; color:#6B7280; margin-bottom:8px;">Foto saat ini:</p>
+                            <img src="<?= base_url('uploads/tempat/' . $tempat['foto']) ?>"
+                                 alt="Foto Tempat"
+                                 style="width:180px; height:120px; object-fit:cover; border-radius:10px; border:1px solid #E5E7EB;">
+                        </div>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Status -->
