@@ -22,10 +22,10 @@ class Database extends Config
 
     public array $default = [
         'DSN'          => '',
-        'hostname'     => '',
-        'username'     => '',
+        'hostname'     => 'localhost',
+        'username'     => 'root',
         'password'     => '',
-        'database'     => '',
+        'database'     => 'govisit',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,
