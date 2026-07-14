@@ -108,6 +108,7 @@
 .cat-pill-cafe   { background: #FAEEDA; color: #633806; }
 .cat-pill-gem    { background: #EEEDFE; color: #3C3489; }
 .cat-pill:hover  { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.tab-btn.active  { outline: 2px solid currentColor; outline-offset: 2px; }
 
 /* ── LAYOUT SECTION UMUM ── */
 .section-pad {
