@@ -48,63 +48,153 @@
     </div>
 </section>
 
-<!-- ── KATEGORI PILLS ── -->
-<section class="category-pills">
-    <div class="container">
-        <a href="<?= base_url('eksplorasi') ?>" class="cat-pill cat-pill-all">🗺️ Semua</a>
-        <a href="<?= base_url('eksplorasi?kategori=wisata') ?>" class="cat-pill cat-pill-wisata">🏔️ Wisata</a>
-        <a href="<?= base_url('eksplorasi?kategori=cafe') ?>" class="cat-pill cat-pill-cafe">☕ Cafe</a>
-        <a href="<?= base_url('hidden-gem') ?>" class="cat-pill cat-pill-gem">💎 Hidden Gem</a>
-    </div>
-</section>
-
-<!-- ── REKOMENDASI ── -->
+<!-- ── TAB KATEGORI ── -->
 <section class="section-pad">
     <div class="container">
         <div class="sec-header">
             <div>
-                <div class="sec-title">✨ Rekomendasi Untukmu</div>
-                <div class="sec-sub">Destinasi terpopuler di Kota Palu</div>
+                <div class="sec-title">✨ Jelajahi Berdasarkan Kategori</div>
+                <div class="sec-sub">Pilih kategori untuk melihat destinasi pilihan</div>
             </div>
             <a href="<?= base_url('eksplorasi') ?>" class="sec-link">Lihat semua →</a>
         </div>
 
-        <div class="grid-places">
-            <?php if (!empty($tempat)): ?>
-                <?php foreach ($tempat as $t): ?>
-                <?php
-                    $thumbClass = $t['kategori']==='wisata' ? 'thumb-wisata' : ($t['kategori']==='cafe' ? 'thumb-cafe' : 'thumb-gem');
-                    $s = cek_status_buka($t['jam_buka']);
-                    $statusClass = $s['status']==='buka' ? 'status-buka' : ($s['status']==='tutup' ? 'status-tutup' : 'status-lain');
-                ?>
-                <a href="<?= base_url('tempat/' . $t['id']) ?>" class="place-card">
-                    <div class="card-thumb <?= $thumbClass ?>">
-                        <?php if (!empty($t['foto_utama'])): ?>
-                            <img src="<?= base_url('uploads/tempat/' . $t['foto_utama']) ?>" alt="<?= esc($t['nama_tempat']) ?>">
-                        <?php else: ?>
-                            <?= $t['kategori']==='wisata' ? '🏔️' : ($t['kategori']==='cafe' ? '☕' : '💎') ?>
-                        <?php endif; ?>
-                        <div class="card-badge-pos">
-                            <span class="badge badge-<?= $t['kategori']==='hidden_gem' ? 'gem' : $t['kategori'] ?>">
-                                <?= $t['kategori']==='hidden_gem' ? 'Hidden Gem' : ucfirst($t['kategori']) ?>
-                            </span>
-                        </div>
-                        <div class="card-rating-pos">⭐ <?= number_format($t['rating_avg'],1) ?></div>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-name"><?= esc($t['nama_tempat']) ?></div>
-                        <div class="card-loc">📍 <?= esc($t['alamat']) ?></div>
-                        <div class="status-pill <?= $statusClass ?>">
-                            <span class="status-dot" style="background:<?= $s['warna'] ?>;"></span>
-                            <span class="status-label" style="color:<?= $s['warna'] ?>;"><?= $s['label'] ?></span>
-                        </div>
-                    </div>
-                </a>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p class="empty-msg">Belum ada data tempat.</p>
-            <?php endif; ?>
+        <!-- Tombol Tab -->
+        <div class="category-pills" style="margin-bottom:1.5rem;">
+            <button class="cat-pill cat-pill-all active" data-bs-toggle="tab" data-bs-target="#tab-semua" type="button">🗺️ Semua</button>
+            <button class="cat-pill cat-pill-wisata" data-bs-toggle="tab" data-bs-target="#tab-wisata" type="button">🏔️ Wisata</button>
+            <button class="cat-pill cat-pill-cafe" data-bs-toggle="tab" data-bs-target="#tab-cafe" type="button">☕ Cafe</button>
+            <button class="cat-pill cat-pill-gem" data-bs-toggle="tab" data-bs-target="#tab-gem" type="button">💎 Hidden Gem</button>
         </div>
+
+        <!-- Isi Tab -->
+        <div class="tab-content">
+
+            <!-- TAB: SEMUA -->
+            <div class="tab-pane fade show active" id="tab-semua">
+                <div class="grid-places">
+                    <?php if (!empty($tempat)): ?>
+                        <?php foreach ($tempat as $t): ?>
+                        <?php
+                            $thumbClass = $t['kategori']==='wisata' ? 'thumb-wisata' : ($t['kategori']==='cafe' ? 'thumb-cafe' : 'thumb-gem');
+                            $s = cek_status_buka($t['jam_buka']);
+                            $statusClass = $s['status']==='buka' ? 'status-buka' : ($s['status']==='tutup' ? 'status-tutup' : 'status-lain');
+                        ?>
+                        <a href="<?= base_url('tempat/' . $t['id']) ?>" class="place-card">
+                            <div class="card-thumb <?= $thumbClass ?>">
+                                <?php if (!empty($t['foto_utama'])): ?>
+                                    <img src="<?= base_url('uploads/tempat/' . $t['foto_utama']) ?>" alt="<?= esc($t['nama_tempat']) ?>">
+                                <?php else: ?>
+                                    <?= $t['kategori']==='wisata' ? '🏔️' : ($t['kategori']==='cafe' ? '☕' : '💎') ?>
+                                <?php endif; ?>
+                                <div class="card-badge-pos">
+                                    <span class="badge badge-<?= $t['kategori']==='hidden_gem' ? 'gem' : $t['kategori'] ?>">
+                                        <?= $t['kategori']==='hidden_gem' ? 'Hidden Gem' : ucfirst($t['kategori']) ?>
+                                    </span>
+                                </div>
+                                <div class="card-rating-pos">⭐ <?= number_format($t['rating_avg'],1) ?></div>
+                            </div>
+                            <div class="card-body">
+                                <div class="card-name"><?= esc($t['nama_tempat']) ?></div>
+                                <div class="card-loc">📍 <?= esc($t['alamat']) ?></div>
+                                <div class="status-pill <?= $statusClass ?>">
+                                    <span class="status-dot" style="background:<?= $s['warna'] ?>;"></span>
+                                    <span class="status-label" style="color:<?= $s['warna'] ?>;"><?= $s['label'] ?></span>
+                                </div>
+                            </div>
+                        </a>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p class="empty-msg">Belum ada data tempat.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <!-- TAB: WISATA -->
+            <div class="tab-pane fade" id="tab-wisata">
+                <div class="grid-places">
+                    <?php $wisata = array_filter($tempat, fn($t) => $t['kategori'] === 'wisata'); ?>
+                    <?php foreach ($wisata as $t): ?>
+                    <?php $s = cek_status_buka($t['jam_buka']); $statusClass = $s['status']==='buka' ? 'status-buka' : ($s['status']==='tutup' ? 'status-tutup' : 'status-lain'); ?>
+                    <a href="<?= base_url('tempat/' . $t['id']) ?>" class="place-card">
+                        <div class="card-thumb thumb-wisata">
+                            <?php if (!empty($t['foto_utama'])): ?>
+                                <img src="<?= base_url('uploads/tempat/' . $t['foto_utama']) ?>" alt="<?= esc($t['nama_tempat']) ?>">
+                            <?php else: ?> 🏔️ <?php endif; ?>
+                            <div class="card-badge-pos"><span class="badge badge-wisata">Wisata</span></div>
+                            <div class="card-rating-pos">⭐ <?= number_format($t['rating_avg'],1) ?></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-name"><?= esc($t['nama_tempat']) ?></div>
+                            <div class="card-loc">📍 <?= esc($t['alamat']) ?></div>
+                            <div class="status-pill <?= $statusClass ?>">
+                                <span class="status-dot" style="background:<?= $s['warna'] ?>;"></span>
+                                <span class="status-label" style="color:<?= $s['warna'] ?>;"><?= $s['label'] ?></span>
+                            </div>
+                        </div>
+                    </a>
+                    <?php endforeach; ?>
+                    <?php if (empty($wisata)): ?><p class="empty-msg">Belum ada destinasi wisata.</p><?php endif; ?>
+                </div>
+            </div>
+
+            <!-- TAB: CAFE -->
+            <div class="tab-pane fade" id="tab-cafe">
+                <div class="grid-places">
+                    <?php $cafe = array_filter($tempat, fn($t) => $t['kategori'] === 'cafe'); ?>
+                    <?php foreach ($cafe as $t): ?>
+                    <?php $s = cek_status_buka($t['jam_buka']); $statusClass = $s['status']==='buka' ? 'status-buka' : ($s['status']==='tutup' ? 'status-tutup' : 'status-lain'); ?>
+                    <a href="<?= base_url('tempat/' . $t['id']) ?>" class="place-card">
+                        <div class="card-thumb thumb-cafe">
+                            <?php if (!empty($t['foto_utama'])): ?>
+                                <img src="<?= base_url('uploads/tempat/' . $t['foto_utama']) ?>" alt="<?= esc($t['nama_tempat']) ?>">
+                            <?php else: ?> ☕ <?php endif; ?>
+                            <div class="card-badge-pos"><span class="badge badge-cafe">Cafe</span></div>
+                            <div class="card-rating-pos">⭐ <?= number_format($t['rating_avg'],1) ?></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-name"><?= esc($t['nama_tempat']) ?></div>
+                            <div class="card-loc">📍 <?= esc($t['alamat']) ?></div>
+                            <div class="status-pill <?= $statusClass ?>">
+                                <span class="status-dot" style="background:<?= $s['warna'] ?>;"></span>
+                                <span class="status-label" style="color:<?= $s['warna'] ?>;"><?= $s['label'] ?></span>
+                            </div>
+                        </div>
+                    </a>
+                    <?php endforeach; ?>
+                    <?php if (empty($cafe)): ?><p class="empty-msg">Belum ada cafe.</p><?php endif; ?>
+                </div>
+            </div>
+
+            <!-- TAB: HIDDEN GEM -->
+            <div class="tab-pane fade" id="tab-gem">
+                <div class="grid-places">
+                    <?php $gems = array_filter($tempat, fn($t) => $t['kategori'] === 'hidden_gem'); ?>
+                    <?php foreach ($gems as $t): ?>
+                    <?php $s = cek_status_buka($t['jam_buka']); $statusClass = $s['status']==='buka' ? 'status-buka' : ($s['status']==='tutup' ? 'status-tutup' : 'status-lain'); ?>
+                    <a href="<?= base_url('tempat/' . $t['id']) ?>" class="place-card">
+                        <div class="card-thumb thumb-gem">
+                            <?php if (!empty($t['foto_utama'])): ?>
+                                <img src="<?= base_url('uploads/tempat/' . $t['foto_utama']) ?>" alt="<?= esc($t['nama_tempat']) ?>">
+                            <?php else: ?> 💎 <?php endif; ?>
+                            <div class="card-badge-pos"><span class="badge badge-gem">Hidden Gem</span></div>
+                            <div class="card-rating-pos">⭐ <?= number_format($t['rating_avg'],1) ?></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-name"><?= esc($t['nama_tempat']) ?></div>
+                            <div class="card-loc">📍 <?= esc($t['alamat']) ?></div>
+                            <div class="status-pill <?= $statusClass ?>">
+                                <span class="status-dot" style="background:<?= $s['warna'] ?>;"></span>
+                                <span class="status-label" style="color:<?= $s['warna'] ?>;"><?= $s['label'] ?></span>
+                            </div>
+                        </div>
+                    </a>
+                    <?php endforeach; ?>
+                    <?php if (empty($gems)): ?><p class="empty-msg">Belum ada hidden gem.</p><?php endif; ?>
+                </div>
+            </div>
+
+        </div><!-- end tab-content -->
     </div>
 </section>
 
