@@ -27,12 +27,25 @@ class Dashboard extends BaseController
         return view('admin/form');
     }
 
+    // Buat nama file foto dari nama tempat, contoh: "Kopi Palu Kita" -> kopi-palu-kita.jpg
+    private function namaFotoDariTempat(string $namaTempat, string $ext): string
+    {
+        return url_title($namaTempat, '-', true) . '.' . strtolower($ext);
+    }
+
     public function simpan()
     {
         $namaFoto = null;
         $foto = $this->request->getFile('foto');
         if ($foto && $foto->isValid() && !$foto->hasMoved()) {
-            $namaFoto = $foto->getRandomName();
+            $namaFoto = $this->namaFotoDariTempat(
+                $this->request->getPost('nama_tempat'),
+                $foto->getClientExtension() ?: $foto->getExtension()
+            );
+            // Timpa jika sudah ada foto dengan nama sama
+            if (file_exists(FCPATH . 'uploads/tempat/' . $namaFoto)) {
+                unlink(FCPATH . 'uploads/tempat/' . $namaFoto);
+            }
             $foto->move(FCPATH . 'uploads/tempat', $namaFoto);
         }
 
@@ -70,7 +83,13 @@ class Dashboard extends BaseController
             if (!empty($namaFoto) && file_exists(FCPATH . 'uploads/tempat/' . $namaFoto)) {
                 unlink(FCPATH . 'uploads/tempat/' . $namaFoto);
             }
-            $namaFoto = $foto->getRandomName();
+            $namaFoto = $this->namaFotoDariTempat(
+                $this->request->getPost('nama_tempat'),
+                $foto->getClientExtension() ?: $foto->getExtension()
+            );
+            if (file_exists(FCPATH . 'uploads/tempat/' . $namaFoto)) {
+                unlink(FCPATH . 'uploads/tempat/' . $namaFoto);
+            }
             $foto->move(FCPATH . 'uploads/tempat', $namaFoto);
         }
 
