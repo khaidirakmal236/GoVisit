@@ -12,8 +12,14 @@
 </div>
 
 <!-- ── HERO TEMPAT ── -->
-<section style="background:<?= $tempat['kategori'] === 'wisata' ? '#C0DD97' : ($tempat['kategori'] === 'cafe' ? '#FAC775' : '#CECBF6') ?>; height:220px; display:flex; align-items:center; justify-content:center; font-size:5rem;">
-    <?= $tempat['kategori'] === 'wisata' ? '🏔️' : ($tempat['kategori'] === 'cafe' ? '☕' : '💎') ?>
+<section style="overflow:hidden;">
+    <?php if (!empty($foto[0]['url_foto'])): ?>
+        <img src="<?= base_url($foto[0]['url_foto']) ?>" alt="<?= esc($tempat['nama_tempat']) ?>" style="width:100%; height:auto; display:block; max-height:500px; object-fit:cover;">
+    <?php else: ?>
+        <div style="background:<?= $tempat['kategori'] === 'wisata' ? '#C0DD97' : ($tempat['kategori'] === 'cafe' ? '#FAC775' : '#CECBF6') ?>; height:220px; display:flex; align-items:center; justify-content:center; font-size:5rem;">
+            <?= $tempat['kategori'] === 'wisata' ? '🏔️' : ($tempat['kategori'] === 'cafe' ? '☕' : '💎') ?>
+        </div>
+    <?php endif; ?>
 </section>
 
 <!-- ── INFO UTAMA ── -->

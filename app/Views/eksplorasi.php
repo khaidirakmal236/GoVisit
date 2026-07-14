@@ -14,7 +14,6 @@
 <section style="background:white; border-bottom:1px solid #E5E7EB; padding:1rem 1.5rem; position:sticky; top:64px; z-index:50;">
     <div class="container">
         <form method="GET" action="<?= base_url('eksplorasi') ?>" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-            <!-- Search -->
             <input
                 type="text"
                 name="q"
@@ -23,7 +22,6 @@
                 style="flex:1; min-width:200px; padding:10px 16px; border:1.5px solid #E5E7EB; border-radius:8px; font-size:14px; font-family:inherit; outline:none;"
                 onfocus="this.style.borderColor='#1D9E75'" onblur="this.style.borderColor='#E5E7EB'"
             >
-            <!-- Filter Kategori -->
             <select name="kategori" style="padding:10px 16px; border:1.5px solid #E5E7EB; border-radius:8px; font-size:14px; font-family:inherit; outline:none; background:white; cursor:pointer;">
                 <option value="" <?= empty($kategori) ? 'selected' : '' ?>>Semua Kategori</option>
                 <option value="wisata"     <?= ($kategori ?? '') === 'wisata'     ? 'selected' : '' ?>>🏔️ Wisata</option>
@@ -44,7 +42,6 @@
 <section style="padding:2rem 1.5rem;">
     <div class="container">
 
-        <!-- Info jumlah hasil -->
         <div style="margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center;">
             <p style="font-size:14px; color:#6B7280;">
                 Menampilkan <strong style="color:#1A1A2E;"><?= count($tempat) ?> tempat</strong>
@@ -57,7 +54,6 @@
             </p>
         </div>
 
-        <!-- Grid Kartu -->
         <?php if (!empty($tempat)): ?>
         <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:1.25rem;">
             <?php foreach ($tempat as $t): ?>
@@ -66,8 +62,14 @@
                     onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)'"
                     onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.07)'">
                     <!-- Thumbnail -->
-                    <div style="width:100px; flex-shrink:0; background:<?= $t['kategori'] === 'wisata' ? '#C0DD97' : ($t['kategori'] === 'cafe' ? '#FAC775' : '#CECBF6') ?>; display:flex; align-items:center; justify-content:center; font-size:2rem;">
-                        <?= $t['kategori'] === 'wisata' ? '🏔️' : ($t['kategori'] === 'cafe' ? '☕' : '💎') ?>
+                    <div style="width:100px; flex-shrink:0; background:<?= $t['kategori'] === 'wisata' ? '#C0DD97' : ($t['kategori'] === 'cafe' ? '#FAC775' : '#CECBF6') ?>; display:flex; align-items:center; justify-content:center; font-size:2rem; overflow:hidden;">
+                        <?php if (!empty($t['foto_utama'])): ?>
+                            <img src="<?= base_url('uploads/tempat/' . $t['foto_utama']) ?>"
+                                 alt="<?= esc($t['nama_tempat']) ?>"
+                                 style="width:100%; height:100%; object-fit:cover;">
+                        <?php else: ?>
+                            <?= $t['kategori'] === 'wisata' ? '🏔️' : ($t['kategori'] === 'cafe' ? '☕' : '💎') ?>
+                        <?php endif; ?>
                     </div>
                     <!-- Info -->
                     <div style="padding:1rem; flex:1;">
@@ -87,7 +89,6 @@
         </div>
 
         <?php else: ?>
-        <!-- Kosong -->
         <div style="text-align:center; padding:4rem 1rem;">
             <div style="font-size:3rem; margin-bottom:1rem;">🔍</div>
             <h3 style="font-size:1.2rem; color:#1A1A2E; margin-bottom:8px;">Tidak ada hasil</h3>

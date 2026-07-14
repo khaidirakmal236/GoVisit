@@ -15,7 +15,6 @@
         <p style="color:rgba(255,255,255,0.85); font-size:1.1rem; margin-bottom:2rem; max-width:500px; margin-left:auto; margin-right:auto;">
             Temukan destinasi wisata, cafe hits, dan hidden gem terbaik di Palu
         </p>
-        <!-- Search Bar -->
         <form action="<?= base_url('eksplorasi') ?>" method="GET" style="display:flex; gap:8px; max-width:480px; margin:0 auto;">
             <input
                 type="text"
@@ -57,10 +56,18 @@
                 <?php foreach ($tempat as $t): ?>
                 <a href="<?= base_url('tempat/' . $t['id']) ?>" style="text-decoration:none; color:inherit;">
                     <div style="background:white; border-radius:14px; overflow:hidden; box-shadow:0 2px 16px rgba(0,0,0,0.07); transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 16px rgba(0,0,0,0.07)'">
+
                         <!-- Gambar / Placeholder -->
-                        <div style="height:160px; background:<?= $t['kategori'] === 'wisata' ? '#C0DD97' : ($t['kategori'] === 'cafe' ? '#FAC775' : '#CECBF6') ?>; display:flex; align-items:center; justify-content:center; font-size:3rem;">
-                            <?= $t['kategori'] === 'wisata' ? '🏔️' : ($t['kategori'] === 'cafe' ? '☕' : '💎') ?>
+                        <div style="height:160px; background:<?= $t['kategori'] === 'wisata' ? '#C0DD97' : ($t['kategori'] === 'cafe' ? '#FAC775' : '#CECBF6') ?>; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:3rem;">
+                            <?php if (!empty($t['foto_utama'])): ?>
+                                <img src="<?= base_url('uploads/tempat/' . $t['foto_utama']) ?>"
+                                     alt="<?= esc($t['nama_tempat']) ?>"
+                                     style="width:100%; height:160px; object-fit:cover;">
+                            <?php else: ?>
+                                <?= $t['kategori'] === 'wisata' ? '🏔️' : ($t['kategori'] === 'cafe' ? '☕' : '💎') ?>
+                            <?php endif; ?>
                         </div>
+
                         <div style="padding:1rem;">
                             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
                                 <span class="badge badge-<?= $t['kategori'] === 'hidden_gem' ? 'gem' : $t['kategori'] ?>">
