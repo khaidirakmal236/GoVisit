@@ -1,0 +1,266 @@
+/* ============================
+   ADMIN DASHBOARD STYLES
+   ============================ */
+
+/* ── HEADER ── */
+.ap-header {
+    background: linear-gradient(135deg, #1A1A2E, #2D2D44);
+    padding: 2rem 1.5rem;
+}
+
+.ap-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.ap-header-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.ap-header-sub {
+    color: #9CA3AF;
+    font-size: 14px;
+}
+
+.ap-header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.ap-header-user {
+    color: #9CA3AF;
+    font-size: 13px;
+}
+
+.ap-btn-add {
+    background: #1D9E75;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.ap-btn-logout {
+    background: #EF4444;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* ── STATS ── */
+.ap-stats {
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 1.25rem 1.5rem;
+}
+
+.ap-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.ap-stat-card {
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.ap-stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.ap-stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.ap-stat-card--total { background: #F8FAF9; }
+.ap-stat-card--total .ap-stat-label { color: #6B7280; }
+.ap-stat-card--total .ap-stat-value { color: #1A1A2E; }
+
+.ap-stat-card--wisata { background: #E1F5EE; }
+.ap-stat-card--wisata .ap-stat-label,
+.ap-stat-card--wisata .ap-stat-value { color: #0F6E56; }
+
+.ap-stat-card--cafe { background: #FAEEDA; }
+.ap-stat-card--cafe .ap-stat-label,
+.ap-stat-card--cafe .ap-stat-value { color: #633806; }
+
+.ap-stat-card--gem { background: #EEEDFE; }
+.ap-stat-card--gem .ap-stat-label,
+.ap-stat-card--gem .ap-stat-value { color: #3C3489; }
+
+/* ── TABLE SECTION ── */
+.ap-table-section {
+    padding: 2rem 1.5rem;
+}
+
+.ap-alert-success {
+    background: #E1F5EE;
+    color: #0F6E56;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ap-table-wrap {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+.ap-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ap-table-head-row {
+    background: #F8FAF9;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.ap-table-th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6B7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ap-table-th--center {
+    text-align: center;
+}
+
+.ap-table-row {
+    border-bottom: 1px solid #F3F4F6;
+    transition: background 0.15s;
+}
+
+.ap-td-no {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #6B7280;
+}
+
+.ap-td-name {
+    padding: 14px 16px;
+}
+
+.ap-td-name-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1A1A2E;
+}
+
+.ap-td-name-address {
+    font-size: 12px;
+    color: #9CA3AF;
+    margin-top: 2px;
+}
+
+.ap-td-kategori {
+    padding: 14px 16px;
+}
+
+.ap-td-rating {
+    padding: 14px 16px;
+}
+
+.ap-td-status {
+    padding: 14px 16px;
+}
+
+.ap-status-badge {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ap-status-badge--active {
+    background: #E1F5EE;
+    color: #0F6E56;
+}
+
+.ap-status-badge--inactive {
+    background: #FEE2E2;
+    color: #991B1B;
+}
+
+.ap-td-aksi {
+    padding: 14px 16px;
+    text-align: center;
+}
+
+.ap-td-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.ap-btn-edit {
+    background: #E1F5EE;
+    color: #0F6E56;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.ap-btn-delete {
+    background: #FEE2E2;
+    color: #991B1B;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* ── EMPTY STATE ── */
+.ap-empty {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+}
+
+.ap-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.ap-empty-title {
+    font-size: 1.1rem;
+    color: #1A1A2E;
+    margin-bottom: 8px;
+}
+
+.ap-empty-desc {
+    color: #6B7280;
+    font-size: 14px;
+    margin-bottom: 1rem;
+}
