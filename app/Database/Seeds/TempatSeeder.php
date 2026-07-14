@@ -110,6 +110,19 @@ class TempatSeeder extends Seeder
                 'created_at'  => $now,
                 'updated_at'  => $now,
             ],
+            [
+                'nama_tempat' => 'uin',
+                'kategori'    => 'wisata',
+                'deskripsi'   => 'kampus 1000 mimpi',
+                'alamat'      => '',
+                'foto_utama'  => $this->cariFoto('uin', null),
+                'rating_avg'  => 5.0,
+                'jam_buka'    => '',
+                'maps_link'   => 'https://maps.app.goo.gl/JPwtDwwwMQsVp7Hb8',
+                'status'      => 'aktif',
+                'created_at'  => $now,
+                'updated_at'  => $now,
+            ],
             // ── CAFE ────────────────────────────────────────────────
             [
                 'nama_tempat' => 'Kopi Palu Kita',
