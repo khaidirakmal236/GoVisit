@@ -108,7 +108,13 @@
 .cat-pill-cafe   { background: #FAEEDA; color: #633806; }
 .cat-pill-gem    { background: #EEEDFE; color: #3C3489; }
 .cat-pill:hover  { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-.tab-btn.active  { outline: 2px solid currentColor; outline-offset: 2px; }
+.cat-pill.active { outline: 2px solid currentColor; outline-offset: 2px; }
+
+/* Bootstrap tab pane — tanpa Bootstrap CSS */
+.tab-pane              { display: none; }
+.tab-pane.active       { display: block; }
+.tab-pane.fade         { opacity: 0; transition: opacity 0.15s linear; }
+.tab-pane.fade.show    { opacity: 1; }
 
 /* ── LAYOUT SECTION UMUM ── */
 .section-pad {

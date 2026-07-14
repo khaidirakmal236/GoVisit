@@ -60,18 +60,18 @@
         </div>
 
         <!-- Tombol Tab -->
-        <div class="tab-nav" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem;">
-            <button class="cat-pill cat-pill-all tab-btn active" data-target="tab-semua" type="button">🗺️ Semua</button>
-            <button class="cat-pill cat-pill-wisata tab-btn" data-target="tab-wisata" type="button">🏔️ Wisata</button>
-            <button class="cat-pill cat-pill-cafe tab-btn" data-target="tab-cafe" type="button">☕ Cafe</button>
-            <button class="cat-pill cat-pill-gem tab-btn" data-target="tab-gem" type="button">💎 Hidden Gem</button>
+        <div class="tab-nav" role="tablist" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.5rem;">
+            <button class="cat-pill cat-pill-all active" data-bs-toggle="tab" data-bs-target="#tab-semua" type="button" role="tab">🗺️ Semua</button>
+            <button class="cat-pill cat-pill-wisata" data-bs-toggle="tab" data-bs-target="#tab-wisata" type="button" role="tab">🏔️ Wisata</button>
+            <button class="cat-pill cat-pill-cafe" data-bs-toggle="tab" data-bs-target="#tab-cafe" type="button" role="tab">☕ Cafe</button>
+            <button class="cat-pill cat-pill-gem" data-bs-toggle="tab" data-bs-target="#tab-gem" type="button" role="tab">💎 Hidden Gem</button>
         </div>
 
         <!-- Isi Tab -->
         <div class="tab-content">
 
             <!-- TAB: SEMUA -->
-            <div class="tab-pane" id="tab-semua" style="display:block">
+            <div class="tab-pane fade show active" id="tab-semua" role="tabpanel">
                 <div class="grid-places">
                     <?php if (!empty($tempat)): ?>
                         <?php foreach ($tempat as $t): ?>
@@ -111,7 +111,7 @@
             </div>
 
             <!-- TAB: WISATA -->
-            <div class="tab-pane" id="tab-wisata" style="display:none">
+            <div class="tab-pane fade" id="tab-wisata" role="tabpanel">
                 <div class="grid-places">
                     <?php $wisata = array_filter($tempat, fn($t) => $t['kategori'] === 'wisata'); ?>
                     <?php foreach ($wisata as $t): ?>
@@ -139,7 +139,7 @@
             </div>
 
             <!-- TAB: CAFE -->
-            <div class="tab-pane" id="tab-cafe" style="display:none">
+            <div class="tab-pane fade" id="tab-cafe" role="tabpanel">
                 <div class="grid-places">
                     <?php $cafe = array_filter($tempat, fn($t) => $t['kategori'] === 'cafe'); ?>
                     <?php foreach ($cafe as $t): ?>
@@ -167,7 +167,7 @@
             </div>
 
             <!-- TAB: HIDDEN GEM -->
-            <div class="tab-pane" id="tab-gem" style="display:none">
+            <div class="tab-pane fade" id="tab-gem" role="tabpanel">
                 <div class="grid-places">
                     <?php $gems = array_filter($tempat, fn($t) => $t['kategori'] === 'hidden_gem'); ?>
                     <?php foreach ($gems as $t): ?>
@@ -230,15 +230,6 @@
 
 </main>
 
-<script>
-document.querySelectorAll('.tab-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-        document.querySelectorAll('.tab-pane').forEach(function(p) { p.style.display = 'none'; });
-        this.classList.add('active');
-        document.getElementById(this.dataset.target).style.display = 'block';
-    });
-});
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <?= $this->include('layout/footer') ?>
